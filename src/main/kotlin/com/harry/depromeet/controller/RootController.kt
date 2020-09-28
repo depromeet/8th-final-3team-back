@@ -8,6 +8,6 @@ class RootController {
 
     @GetMapping("/")
     fun root(): String {
-        return "Hello"
+        return "Hello My Lucky Days"
     }
 }
