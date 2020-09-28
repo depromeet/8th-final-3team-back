@@ -16,10 +16,18 @@ repositories {
 }
 
 dependencies {
+    // Spring Modules
     implementation("org.springframework.boot:spring-boot-starter-web")
+
+    // HTMLUnit
+    implementation(group = "net.sourceforge.htmlunit", name = "htmlunit", version = "2.43.0")
+
+    // Kotlin
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+
+    // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
