@@ -5,9 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class Place(
+        val placeId: Long?,
         val title: String?,
-        val score: String?,
+        val photo: String?,
         val address: String?,
-        val openingDays: String?,
-        val openingTimes: String?
+        val zipCode: String?,
+        val point: String?
 )

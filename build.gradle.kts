@@ -3,13 +3,16 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.3.4.RELEASE"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
-    kotlin("jvm") version "1.3.72"
-    kotlin("plugin.spring") version "1.3.72"
+    kotlin("jvm") version "1.4.0"
+    kotlin("plugin.spring") version "1.4.0"
 }
 
 group = "com.harry"
 version = "0.0.1"
 java.sourceCompatibility = JavaVersion.VERSION_11
+
+val fuelVersion = "2.3.0"
+val fuelResultVersion = "3.1.0"
 
 repositories {
     mavenCentral()
@@ -19,8 +22,10 @@ dependencies {
     // Spring Modules
     implementation("org.springframework.boot:spring-boot-starter-web")
 
-    // HTMLUnit
-    implementation(group = "net.sourceforge.htmlunit", name = "htmlunit", version = "2.43.0")
+    // Fuel
+    implementation("com.github.kittinunf.fuel:fuel:$fuelVersion")
+    implementation("com.github.kittinunf.fuel:fuel-coroutines:$fuelVersion")
+    implementation("com.github.kittinunf.result:result:$fuelResultVersion")
 
     // Kotlin
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
