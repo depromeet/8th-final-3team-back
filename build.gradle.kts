@@ -13,6 +13,7 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 val fuelVersion = "2.3.0"
 val fuelResultVersion = "3.1.0"
+val swagger2Version = "3.0.0"
 
 repositories {
     mavenCentral()
@@ -26,6 +27,9 @@ dependencies {
     implementation("com.github.kittinunf.fuel:fuel:$fuelVersion")
     implementation("com.github.kittinunf.fuel:fuel-coroutines:$fuelVersion")
     implementation("com.github.kittinunf.result:result:$fuelResultVersion")
+
+    // Swagger
+    implementation("io.springfox:springfox-boot-starter:$swagger2Version")
 
     // Kotlin
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
