@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api")
-class HtmlController(
+class PlaceController(
         val placeService: PlaceService
 ) {
     @ApiOperation(value = "Kakao Mapi API Parsing API")
