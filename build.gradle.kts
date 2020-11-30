@@ -52,3 +52,8 @@ tasks.withType<KotlinCompile> {
         jvmTarget = "11"
     }
 }
+
+tasks.bootJar {
+    mainClassName = "com.harry.depromeet.ApplicationKt"
+    archiveFileName.set("harry.jar")
+}
