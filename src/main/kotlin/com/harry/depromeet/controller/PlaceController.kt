@@ -18,6 +18,6 @@ class PlaceController(
     @ApiOperation(value = "Kakao Mapi API Parsing API")
     @GetMapping("/place/{place_id}")
     fun getPlace(@PathVariable(value = "place_id") placeId: Long): Place {
-        return placeService.request(placeId)
+        return placeService.getPlace(placeId)
     }
 }

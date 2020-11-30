@@ -1,41 +1,29 @@
 package com.harry.depromeet.service
 
 import com.fasterxml.jackson.databind.JsonNode
-import com.github.kittinunf.fuel.Fuel
-import com.github.kittinunf.fuel.core.Body
-import com.github.kittinunf.fuel.core.Response
-import com.github.kittinunf.fuel.core.ResponseResultOf
-import com.github.kittinunf.fuel.core.isSuccessful
 import com.harry.depromeet.model.Place
 import com.harry.depromeet.utils.JsonUtils
+import org.springframework.http.HttpEntity
+import org.springframework.http.HttpMethod
 import org.springframework.stereotype.Service
+import org.springframework.web.client.RestTemplate
+import org.springframework.web.client.exchange
+import java.lang.NullPointerException
 import java.lang.RuntimeException
 
 @Service
-class PlaceService {
-    fun request(placeId: Long): Place {
+class PlaceService(val restTemplate: RestTemplate) {
+
+    fun getPlace(placeId: Long): Place {
         val url = "https://place.map.kakao.com/main/v/$placeId"
-        return Fuel.get(url)
-                .response()
-                .second
-                .isSuccess()
-                .data
-                .toPlace()
+        val response = restTemplate.exchange(url, HttpMethod.GET, HttpEntity.EMPTY, String::class.java)
+        response.body?.let {
+            return toPlace(it)
+        } ?: throw NullPointerException()
     }
 
-    fun Response.isSuccess(): Response {
-        if (this.isSuccessful) {
-            return this
-        }
-
-        when (this.statusCode) {
-            400 -> throw RuntimeException("Bad Request")
-            else -> throw RuntimeException("Unexpected Exception")
-        }
-    }
-
-    fun ByteArray.toPlace(): Place {
-        val jsonNode = JsonUtils.toJsonNode(String(this))
+    fun toPlace(body: String): Place {
+        val jsonNode = JsonUtils.toJsonNode(body)
 
         val basicInfo: JsonNode? = jsonNode["basicInfo"]
 
