@@ -15,10 +15,9 @@ import java.lang.NullPointerException
 import java.lang.RuntimeException
 
 @Service
-class PlaceService {
+class PlaceService(val restTemplate: RestTemplate) {
 
     fun getPlace(placeId: Long): Place {
-        val restTemplate = RestTemplate()
         val headers = HttpHeaders()
         headers.contentType = MediaType.valueOf("text/plain;charset=utf-8");
         headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" +
