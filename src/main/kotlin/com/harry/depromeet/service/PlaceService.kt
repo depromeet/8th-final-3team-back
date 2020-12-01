@@ -19,11 +19,11 @@ class PlaceService(val restTemplate: RestTemplate) {
 
     fun getPlace(placeId: Long): Place {
         val headers = HttpHeaders()
-        headers.contentType = MediaType.valueOf("text/plain;charset=utf-8");
-        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)" +
-                " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");
-        val entity = HttpEntity<String>("", headers)
+        headers.contentType = MediaType.valueOf("text/plain;charset=utf-8")
+        headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36")
+        headers.add("Accept", "*/*")
 
+        val entity = HttpEntity<String>("", headers)
         val url = "https://place.map.kakao.com/main/v/$placeId"
         val response = restTemplate.exchange(url, HttpMethod.GET, entity, String::class.java)
         response.body?.let {

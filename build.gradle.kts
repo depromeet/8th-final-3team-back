@@ -24,7 +24,9 @@ dependencies {
     // Swagger
     implementation("io.springfox:springfox-boot-starter:$swagger2Version")
 
-    implementation(group = "org.apache.httpcomponents", name = "httpclient", version = "4.3.4")
+    // HttpComponents
+    implementation(group = "org.apache.httpcomponents", name = "httpclient", version = "4.5.1")
+    implementation(group = "org.apache.httpcomponents", name = "httpcore", version = "4.4")
 
     // Kotlin
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
